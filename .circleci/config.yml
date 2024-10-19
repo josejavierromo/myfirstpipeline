@@ -9,6 +9,12 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - run:
+          name: "upgrade pip"
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
       # Step 1: obtenemos codigo fuente
       - checkout
       # Step 2: creamos venv e instalamos dependencias
