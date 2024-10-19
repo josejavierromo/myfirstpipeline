@@ -12,6 +12,10 @@ jobs:
       # Step 1: obtenemos codigo fuente
       - checkout
       - run:
+          name: "install python"
+          command: |
+            apt install python3.10-venv
+      - run:
           name: "upgrade pip"
           command: |
             python3 -m venv venv
