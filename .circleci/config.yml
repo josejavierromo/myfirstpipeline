@@ -14,7 +14,7 @@ jobs:
       - run:
           name: "install python"
           command: |
-            apt install python3.10-venv
+            sudo apt install python3.10-venv
       - run:
           name: "upgrade pip"
           command: |
