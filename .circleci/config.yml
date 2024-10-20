@@ -26,7 +26,7 @@ jobs:
             flake8 --exclude=venv* --statistics
             pytest -v
   deploy:
-    executors: docker-executor
+    executor: docker-executor
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
