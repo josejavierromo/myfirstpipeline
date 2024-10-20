@@ -1,10 +1,13 @@
 # Python CircleCI 2.1 configuration file.
 version: 2.1
-jobs:
-  build:
+executors:
+  docker-executor:
     docker:
       - image: cimg/python:3.13
     working_directory: ~/repo
+jobs:
+  build:
+    executor: docker-executor
     steps:
       # Step 1: obtenemos codigo fuente
       - checkout
@@ -22,13 +25,11 @@ jobs:
             source venv/bin/activate
             flake8 --exclude=venv* --statistics
             pytest -v
+  deploy:
+    executors: docker-executor
+    steps:
       - setup_remote_docker:
           docker_layer_caching: true
-  deploy:
-    docker:
-      - image: cimg/python3.13
-    working_directory: ~/repo
-    steps:
       # Step 1: Docker build and push
       - run:
           name: Build and Push Docker
